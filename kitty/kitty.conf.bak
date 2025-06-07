@@ -1,0 +1,101 @@
+# Font Settings
+font_family      Fira Code
+font_size        12
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+
+# Atelier Estuary Dark Theme Colors
+# Source: AtelierSchemes-kitty[](https://github.com/atelierbram/AtelierSchemes-kitty)
+# A yellow-green-ish palette with desaturated colors and brown-greyed background
+foreground       #929181
+background       #22221b
+selection_foreground #929181
+selection_background #302f27
+
+# Cursor
+cursor           #929181
+cursor_text_color #22221b
+cursor_shape     underline
+
+# URL underline color when hovering with mouse
+url_color        #a5980d
+
+# Window border and bell colors
+active_border_color #6c6b5a
+inactive_border_color #22221b
+bell_border_color #ae7313
+visual_bell_color none
+
+# OS Window titlebar colors
+wayland_titlebar_color #302f27
+macos_titlebar_color #302f27
+
+# Color Scheme (Retaining your existing ANSI colors since the theme's full ANSI set isn't available)
+# Active tab
+active_tab_background   #FFFFFF
+active_tab_foreground   #000000
+inactive_tab_background #333333
+inactive_tab_foreground #999999
+
+# Selection highlight
+selection_background    #FFFFFF
+selection_foreground    #000000
+
+# Define colors for terminal (ANSI colors)
+# Black
+color0  #000000
+# Red
+color1  #FF5555
+# Green
+color2  #55FF55
+# Yellow
+color3  #FFFF55
+# Blue
+color4  #5555FF
+# Magenta
+color5  #FF55FF
+# Cyan
+color6  #55FFFF
+# White
+color7  #BBBBBB
+# Bright Black
+color8  #555555
+# Bright Red
+color9  #FF5555
+# Bright Green
+color10 #55FF55
+# Bright Yellow
+color11 #FFFF55
+# Bright Blue
+color12 #5555FF
+# Bright Magenta
+color13 #FF55FF
+# Bright Cyan
+color14 #55FFFF
+# Bright White
+color15 #FFFFFF
+
+# Window Padding (for a cleaner look)
+window_padding_width 10
+
+# Tab Bar Appearance
+tab_bar_style        powerline
+tab_bar_background   #333333
+
+# Scrollback Settings (for better usability)
+scrollback_lines 10000
+
+# Keybindings (Optional: Add custom shortcuts)
+map ctrl+shift+c copy_to_clipboard
+map ctrl+shift+v paste_from_clipboard
+
+# Enable Shell Integration (for better prompt detection)
+shell_integration enabled
+
+# Transparency and Blur (Optional: Enable if your compositor supports it)
+# Note: Requires Hyprland to have blur enabled
+background_opacity 0.95
+dynamic_background_opacity yes
+map ctrl+shift+up dynamic_background_opacity +0.1
+map ctrl+shift+down dynamic_background_opacity -0.1

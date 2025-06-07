@@ -1,0 +1,72 @@
+/* Minimal Rofi theme with dark dark blue and faint deep red for selection */
+
+/* Global settings */
+* {
+    /* Colors */
+    background: #1A2526;          /* Dark dark blue background */
+    foreground: #5A6A6B;          /* Slightly lighter dark blue for input text */
+    accent: #5E2829;              /* Deep, faint red for selected items */
+    border: #2A3536;              /* Slightly lighter dark blue for borders */
+    transparent: #00000000;       /* Transparent color */
+
+    /* Font */
+    font: "JetBrains Mono 12";    /* Monospace font for a minimal look */
+
+    /* Spacing and padding */
+    padding: 8px;
+    spacing: 0px;
+    border-width: 1px;
+}
+
+/* Main window */
+window {
+    width: 30%;                   /* Small, minimal window */
+    background-color: @background;
+    border: 1px;
+    border-color: @border;
+    border-radius: 6px;
+}
+
+/* Input bar (where you type) */
+inputbar {
+    background-color: @background;
+    border-color: @border;
+    children: [ entry ];          /* Only show the entry field */
+}
+
+entry {
+    text-color: @foreground;      /* Input text remains slightly lighter for visibility */
+    background-color: @background;
+}
+
+/* List of entries (menu items) */
+listview {
+    background-color: @background;
+    border: 0px;
+    lines: 5;                     /* Show up to 5 entries */
+    columns: 1;                   /* Single column for simplicity */
+}
+
+/* Individual menu items */
+element {
+    padding: 5px;
+    background-color: @background;
+    text-color: @background;      /* Non-selected items blend into the background */
+}
+
+/* Text inside non-selected menu items */
+element-text {
+    background-color: @background;
+    text-color: @background;      /* Explicitly set to match background */
+}
+
+/* Selected menu item */
+element selected {
+    background-color: @accent;    /* Deep, faint red for selected item */
+}
+
+/* Text inside selected menu items */
+element-text selected {
+    background-color: @accent;    /* Match the selected background */
+    text-color: @foreground;      /* Text becomes visible when selected */
+}
