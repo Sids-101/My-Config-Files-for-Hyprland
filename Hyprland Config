@@ -2,6 +2,9 @@
 # Define the main modifier key
 $mod = SUPER
 
+#Nvidia Environment Variable (Remove if Fails to boot)
+env = NVD_BACKEND,direct
+
 # Window rules for Firefox Picture-in-Picture
 windowrulev2 = float,class:^(firefox)$,title:^(Picture-in-Picture)$
 windowrulev2 = pin,class:^(firefox)$,title:^(Picture-in-Picture)$,floating:1
@@ -43,7 +46,6 @@ misc {
 # STARTUP APPLICATIONS
 exec-once = numlock off
 exec-once = hyprpaper
-exec-once = /home/axeman/.local/bin/random_wallpaper.sh
 exec-once = hyprctl dispatch workspace 1
 exec-once = hyprctl dispatch dpms on eDP-1
 exec-once = wlr-randr --output eDP-1 --dpms on
@@ -69,16 +71,14 @@ bind = SUPER, 9, workspace, 9
 
 # Keybindings
 bind = SUPER, space, exec, rofi -show drun -theme ~/.config/rofi/themes/squared-nord.rasi
-bind = SUPER, M, exec, ~/.config/hypr/toggle_desktop.sh
 bind = SUPER_SHIFT, R, exec, hyprctl reload
-bind = SUPER, m, exec, for win in $(hyprctl clients | grep -B1 "workspace: $(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')") ; do hyprctl dispatch togglespecialworkspace minimized ; done
+bind = SUPER, m, exec, for win in $(hyprctl clients | grep -B1 "workspace: $(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')") ; do hyprctl dispatch to>
 bind = SUPER_SHIFT, m, killactive
-bind = SUPER, d, exec, for win in $(hyprctl clients | grep -B1 "workspace: $(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')") ; do hyprctl dispatch togglespecialworkspace minimized ; done
+bind = SUPER, d, exec, for win in $(hyprctl clients | grep -B1 "workspace: $(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')") ; do hyprctl dispatch to>
 bind = $mod, Return, exec, kitty
 bind = $mod, Q, killactive
 bind = $mod, T, togglefloating
 bind = $mod, F, fullscreen
-bind = SUPER, R, exec, ~/script/random_wallpaper.sh
 
 # Resize floating windows
 bind = $mod SHIFT, left, resizeactive, -10 0
@@ -128,12 +128,6 @@ bind = SUPER, L, exec, wlogout
 bindm = SUPER, mouse:272, movewindow
 bindm = SUPER, mouse:273, resizewindow
 
-env = __NV_PRIME_RENDER_OFFLOAD,1
-env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-env = WLR_NO_HARDWARE_CURSORS,1
-env = LIBVA_DRIVER_NAME,nvidia
-env = GBM_BACKEND,nvidia-drm
-env = AQ_DRM_DEVICES,/dev/dri/card1
 
 # LID SWITCH HANDLING
 bindl=,switch:on:Lid Switch,exec,hyprctl dispatch dpms off
@@ -160,5 +154,3 @@ decoration {
         passes = 1
     }
 }
-
-bind = SUPER, B, exec, ~/script/brightness_gui.sh
