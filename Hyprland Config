@@ -16,6 +16,9 @@ monitor=eDP-1,1920x1080@144,0x0,1
 # INPUT SETTINGS
 input {
     kb_layout = us
+    
+    numlock_by_default = true 
+
     touchpad {
         natural_scroll = false
         scroll_factor = 1.0
@@ -25,6 +28,7 @@ input {
     accel_profile = flat
     sensitivity = 0
 }
+
 
 # GENERAL SETTINGS
 general {
@@ -44,13 +48,12 @@ misc {
 }
 
 # STARTUP APPLICATIONS
-exec-once = numlock off
+exec-once = numlock on
 exec-once = hyprpaper
 exec-once = hyprctl dispatch workspace 1
 exec-once = hyprctl dispatch dpms on eDP-1
 exec-once = wlr-randr --output eDP-1 --dpms on
 exec-once = waybar &
-exec-once = numlockx on
 exec-once = hyprpaper
 exec-once = nm-applet &
 exec-once = polkit-kde-agent &
