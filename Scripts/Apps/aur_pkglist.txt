@@ -1,0 +1,4 @@
+notepadnext-bin
+wlogout
+yay-bin
+yay-bin-debug
