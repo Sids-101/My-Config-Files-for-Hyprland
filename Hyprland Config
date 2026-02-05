@@ -22,15 +22,6 @@ env = VK_ICD_FILENAMES,/usr/share/vulkan/icd.d/nvidia_icd.json:/usr/share/vulkan
 misc {
     enable_anr_dialog = false
 }
-
-# Float and pin Firefox Picture-in-Picture
-windowrulev2 = float, title:^(Picture-in-Picture)$
-windowrulev2 = pin, title:^(Picture-in-Picture)$
-windowrulev2 = float, title:^(Firefox)$
-windowrulev2 = size 800 450, title:^(Picture-in-Picture)$
-windowrulev2 = move 100%-810 100%-460, title:^(Picture-in-Picture)$
-
-
 # MONITOR SETTINGS
 monitor=eDP-1,1920x1080@144,0x0,1
 
