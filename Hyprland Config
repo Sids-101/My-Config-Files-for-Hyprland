@@ -2,12 +2,7 @@
 $mod = SUPER
 
 #Nvidia Environment Variable (Remove if Fails to boot)
-env = NVD_BACKEND,direct
-
-#For Steam to launch
-xwayland {
-    force_zero_scaling = true
-}
+#env = NVD_BACKEND,direct
 
 # NVIDIA specific environment variables
 env = LIBVA_DRIVER_NAME,nvidia
@@ -15,13 +10,11 @@ env = XDG_SESSION_TYPE,wayland
 env = GBM_BACKEND,nvidia-drm
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
 
-# Critical for Vulkan to find the ICDs
-env = VK_ICD_FILENAMES,/usr/share/vulkan/icd.d/nvidia_icd.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
-
-#For RetroArch
-misc {
-    enable_anr_dialog = false
+cursor {
+    no_hardware_cursors = true
 }
+
+
 # MONITOR SETTINGS
 monitor=eDP-1,1920x1080@144,0x0,1
 
@@ -38,7 +31,7 @@ input {
         drag_lock = true
     }
     accel_profile = flat
-    sensitivity = 0
+    sensitivity = 0.5
 }
 
 #Swipe to Switch Workspaces
@@ -66,18 +59,24 @@ misc {
 
 # STARTUP APPLICATIONS
 exec-once = numlock on
-exec-once = hyprpaper
-exec-once = hyprctl dispatch workspace 1
-exec-once = hyprctl dispatch dpms on eDP-1
-exec-once = wlr-randr --output eDP-1 --dpms on
-exec-once = waybar &
-exec-once = hyprpaper
 exec-once = nm-applet &
-exec-once = polkit-kde-agent &
-exec-once = kitty &
-exec-once = MOZ_ENABLE_WAYLAND=1 firefox &
-exec-once = swww-daemon
-exec-once = swww img /home/sid/Pictures/Wallpapers/DontTreadOnMe.jpg
+exec-once = waybar &
+# On Arch, the path below is the standard for KDE Polkit
+exec-once = /usr/lib/polkit-kde-authentication-agent-1 &
+
+# Wallpaper (Using awww)
+exec-once = awww-daemon
+exec-once = awww img /home/sid/Pictures/Wallpapers/DontTreadOnMe.jpg
+
+# Monitor & Workspace Prep
+exec-once = hyprctl dispatch workspace 1
+# Note: 'dispatch dpms on' is usually redundant as Hyprland handles this, 
+# but keeping it doesn't hurt if your laptop lid acting up.
+exec-once = hyprctl dispatch dpms on eDP-1
+
+# Launch default apps
+exec-once = [workspace 1 silent] kitty
+exec-once = [workspace 1 silent] firefox
 
 # SWITCH WORKSPACES
 bind = SUPER, 1, workspace, 1
@@ -93,14 +92,12 @@ bind = SUPER, 9, workspace, 9
 # Keybindings
 bind = SUPER, space, exec, rofi -show drun -theme ~/.config/rofi/themes/squared-nord.rasi
 bind = SUPER_SHIFT, R, exec, hyprctl reload
-bind = SUPER, m, exec, for win in $(hyprctl clients | grep -B1 "workspace: $(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')") ; do hyprctl dispatch to>
 bind = SUPER_SHIFT, m, killactive
-bind = SUPER, d, exec, for win in $(hyprctl clients | grep -B1 "workspace: $(hyprctl activeworkspace | grep 'workspace ID' | awk '{print $3}')") ; do hyprctl dispatch to>
 bind = $mod, Return, exec, kitty
 bind = $mod, Q, killactive
 bind = $mod, T, togglefloating
 bind = $mod, F, fullscreen
-bind = $mod, R, exec, ~/.config/hypr/scripts/random_wallpaper.sh
+bind = SUPER, R, exec, /home/sid/Scripts/random_wallpaper.sh
 
 # Resize floating windows
 bind = $mod SHIFT, left, resizeactive, -10 0
